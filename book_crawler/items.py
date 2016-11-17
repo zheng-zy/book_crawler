@@ -8,7 +8,7 @@
 import scrapy
 
 
-class BookCrawlerItem(scrapy.Item):
+class Book(scrapy.Item):
     # define the fields for your item here like:
     book_name = scrapy.Field()
     book_url = scrapy.Field()
@@ -25,6 +25,7 @@ class BookCrawlerItem(scrapy.Item):
 class BookInfo(scrapy.Item):
     # define the fields for your item here like:
     book_id = scrapy.Field()
+    sort = scrapy.Field()
     book_chapter = scrapy.Field()
     book_chapter_url = scrapy.Field()
     book_content = scrapy.Field()

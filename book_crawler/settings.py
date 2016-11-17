@@ -14,6 +14,8 @@ BOT_NAME = 'book_crawler'
 SPIDER_MODULES = ['book_crawler.spiders']
 NEWSPIDER_MODULE = 'book_crawler.spiders'
 
+LOG_LEVEL = 'DEBUG'
+
 MONGO_URI = '192.168.97.120'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
