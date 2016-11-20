@@ -15,3 +15,7 @@ print cha
 
 str = 'a123b'
 print re.findall(r'a(.+?)b', str)
+
+url = 'http://www.biquge.com/0_68/2507394.html'
+print url.split('/')[-1]
+print url[:url.rindex("/") + 1]

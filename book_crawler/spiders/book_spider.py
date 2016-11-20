@@ -2,7 +2,6 @@
 # coding=utf-8
 # Created by zhezhiyong@163.com on 2016/11/16.
 
-import re
 from datetime import datetime
 
 import scrapy
@@ -18,7 +17,9 @@ class BookSpider(scrapy.Spider):
     name = "biquge"
     # allowed_domains = ['biquge.com']
     start_urls = [
-        "http://www.biquge.com/0_176/"
+        "http://www.biquge.com/0_176/",
+        # "http://www.biquge.com/5_5094/",
+        # "http://www.biquge.com/0_68/"
     ]
     prefix_url = 'http://www.biquge.com'
 
@@ -57,6 +58,6 @@ class BookSpider(scrapy.Spider):
         contents = selector.xpath(u'//div[@id="content"]/text()')
         book_content = ''
         for content in contents:
-            book_content += content.extract().strip()
+            book_content += '<p>' + content.extract().strip() + '<br><p>'
         book_info['book_content'] = book_content
         yield book_info

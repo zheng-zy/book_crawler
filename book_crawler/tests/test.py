@@ -1,35 +1,45 @@
 #!usr/bin/env python
 # coding=utf-8
-# Created by zhezhiyong@163.com on 2016/11/16.
+# Created by zhezhiyong@163.com on 2016/11/18.
 
-import pymongo
 
-connection = pymongo.MongoClient('192.168.97.120')
-tdb = connection.book_crawler
-db_test = tdb.test
+html = '''<div id="list">
+				<dl>
+                    <dt>《大主宰》最新章节</b>（提示：已启用缓存技术，最新章节可能会延时显示，登录书架即可实时查看。）</dt>
 
-jike = {'name': u'极客', 'age': '5', 'skill': 'Python'}
-god = {'name': u'玉皇大帝', 'age': 36000, 'skill': 'creatanything', 'other': u'王母娘娘不是他的老婆'}
-godslaver = {'name': u'月老', 'age': 'unknown', 'other': u'他的老婆叫孟婆'}
-# db_test.insert(jike)
-# db_test.insert(god)
-# db_test.insert(godslaver)
-# db_test.remove({'name': u'极客'})
-import datetime
-from bson.objectid import ObjectId
+                    <dd> <a href="/0_176/2507378.html">第一千三百六十二章 空间节点</a></dd>
 
-data_list = [{'book_chapter': u'\u7b2c\u4e24\u767e\u516b\u5341\u56db\u7ae0 \u4e00\u4e07\u4e09\u5343\u9897',
-              'book_chapter_url': u'http://www.biquge.com/0_176/1260511.html',
-              'book_id': ObjectId('582c412bd77ab32b04b05989'),
-              'create_time': datetime.datetime(2016, 11, 16, 19, 21, 16, 9000)},
-             {'book_chapter': u'\u7b2c\u4e09\u767e\u4e5d\u5341\u516b\u7ae0 \u9f99\u86c7\u6df7\u6742',
-              'book_chapter_url': u'http://www.biquge.com/0_176/1269258.html',
-              'book_id': ObjectId('582c412bd77ab32b04b05989'),
-              'create_time': datetime.datetime(2016, 11, 16, 19, 21, 16, 25000)},
-             {'book_chapter': u'\u7b2c\u4e5d\u767e\u56db\u5341\u4e94\u7ae0 \u7075\u795e\u6db2\u6210\u5f62!',
-              'book_chapter_url': u'http://www.biquge.com/0_176/1341639.html',
-              'book_id': ObjectId('582c412bd77ab32b04b05989'),
-              'create_time': datetime.datetime(2016, 11, 16, 19, 21, 16, 98000)}]
-db_test.insert(data_list)
+                    <dd> <a href="/0_176/2507377.html">第一千三百六十一章 白龙机缘</a></dd>
 
-print u'操作数据库完成！'
+                    <dd> <a href="/0_176/2507219.html">第一千三百六十章 天至尊之路</a></dd>
+
+                    <dd> <a href="/0_176/2507132.html">第一千三百六十章 牧府扬威</a></dd>
+
+                    <dd> <a href="/0_176/2506956.html">第一千三百五十九章 新晋霸主</a></dd>
+
+                    <dd> <a href="/0_176/2506903.html">第一千三百五十八章 划分地盘</a></dd>
+
+                    <dd> <a href="/0_176/2506141.html">第一千三百五十七章 八部浮屠显威</a></dd>
+
+                    <dd> <a href="/0_176/2506083.html">第一千三百五十六章 临阵突破</a></dd>
+
+                    <dd> <a href="/0_176/2505998.html">第一千三百五十五章 牧主战三霸</a></dd>
+
+
+
+                    <dt>《大主宰》正文</dt>
+
+                    <dd> <a href="/0_176/1228884.html">第一章 北灵院</a></dd>
+
+                    <dd> <a href="/0_176/1228885.html">第二章 被踢出灵路的少年</a></dd>
+
+                    <dd> <a href="/0_176/1228886.html">第三章 牧域</a></dd></dl></div>
+'''
+
+from scrapy.selector import Selector
+
+sel = Selector(text=html, type="html")
+
+list = sel.xpath('//div[@id="list"]')
+for l in list:
+    print l

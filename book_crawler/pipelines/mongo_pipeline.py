@@ -34,8 +34,10 @@ class MongoPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, Book):
             book_id = self.db[item.__class__.__name__].insert(dict(item))
-            self.books[spider.start_urls[0]] = book_id
+            self.books[item['book_url']] = book_id
         if isinstance(item, BookInfo):
-            item['book_id'] = self.books.get(spider.start_urls[0], 0)
+            book_chapter_url = item['book_chapter_url']
+            book_url = book_chapter_url[:book_chapter_url.rindex("/") + 1]
+            item['book_id'] = self.books.get(book_url, 0)
             self.db[item.__class__.__name__].insert(dict(item))
         return item

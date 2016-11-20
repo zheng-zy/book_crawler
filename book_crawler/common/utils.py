@@ -113,12 +113,16 @@ def match_str(text):
     regex = re.compile(ur'\u7b2c(.+?)\u7ae0')
     strs = regex.findall(text)
     str = list_first_item(strs)
-    return get_chapter_num(str)
+    try:
+        num = get_chapter_num(str)
+    except:
+        num = -1
+    return num
 
 
 list_first_item = lambda x: x[0] if x else None
 get_chapter_num = lambda x: cn2dig(x) if x else 0
 
 if __name__ == "__main__":
-    print match_str(u'第十一章 北灵院')
+    print match_str(u'第十二章 黑魔老祖')
     pass
